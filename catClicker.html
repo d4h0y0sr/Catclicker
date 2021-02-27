@@ -1,0 +1,65 @@
+<html>
+
+<body>
+    <h1>Cat clicker Duo</h1>
+    <div>
+        <table width="100%">
+            <tr>
+                <th>
+                    <ul id="select"></ul>
+                </th>
+                <th>
+                    <img src="" id="catImg" alt="Cat">
+                    <br>
+                    <label id="catName"></label>
+                        <p><label id="msgCat"></label><label id="count">0</label></p>
+                </th>
+            </tr>
+
+        </table>
+        
+          
+     
+    </div>
+</body>
+
+</html>
+
+<script>
+    // Var declarations
+    var catnames = ["Fabio","Chewie","Peter","Lizzy","Sofy"];    
+    var counters=[0,0,0,0,0];  
+    var selectedCat=0;
+
+    // element extraction
+    var ul= document.getElementById('select');
+    var catImg = document.getElementById('catImg');
+    
+    
+    //Listener Clic
+    catImg.addEventListener('click', function () {                
+            counters[selectedCat]++;           
+            document.getElementById('count').innerHTML = counters[selectedCat];
+        }, false);
+
+    for (var i = 1; i <= catnames.length; i++) {        
+        
+        var catItem = document.createElement("li");
+        catItem.innerHTML=catnames[i-1];
+        const index=i-1;
+
+        catItem.setAttribute("id",index);      
+       
+        catItem.addEventListener('click',function(){
+            console.log(catnames[index]);
+            selectedCat=index;
+            document.getElementById("catImg").setAttribute("src",catnames[index]+".jpg"); 
+            document.getElementById("catName").innerHTML=catnames[index]; 
+            document.getElementById('count').innerHTML = counters[selectedCat];
+        });
+
+        ul.appendChild(catItem);
+
+        
+    }
+</script>
